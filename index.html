@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazılım Mühendisliği Destek</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            padding: 40px;
+            z-index: 2;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 5px solid #00d8ff;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .info-section:nth-child(2) { animation-delay: 1s; }
+        .info-section:nth-child(3) { animation-delay: 2s; }
+        .info-section:nth-child(4) { animation-delay: 3s; }
+
+        .contact {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 18px;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00d8ff, 0 0 20px #00d8ff;
+            }
+            to {
+                text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Yıldızlar */
+        .stars, .stars::before, .stars::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 200%;
+            height: 200%;
+            background: transparent url('https://raw.githubusercontent.com/JulianLaval/canvas-space/master/stars.png') repeat;
+            animation: moveStars 200s linear infinite;
+        }
+
+        @keyframes moveStars {
+            0% {transform: translateY(0);}
+            100% {transform: translateY(-1000px);}
+        }
+
+        /* Yıldırım efekti */
+        .lightning {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            animation: lightningFlash 10s infinite;
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 0; }
+            5% { opacity: 0.4; }
+            6% { opacity: 0; }
+            7% { opacity: 0.2; }
+            8% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="lightning"></div>
+    <div class="container">
+        <h1>Yazılım Mühendisliği Destek</h1>
+        
+        <div class="info-section">1. Bu yolda yalnız değilsin, her seviyeden yazılımcı birlikte gelişebilir.</div>
+        <div class="info-section">2. Kod yazarken takıldığında yardım istemekten çekinme, hepimiz bir zamanlar yeniydik.</div>
+        <div class="info-section">3. Küçük adımlarla büyük projeler yapılır, yeter ki vazgeçme.</div>
+        <div class="info-section">4. Kendini bu alanda geliştiren bütün yazılımcı kardeşlerimi bekliyorum, birlikte olursak her şeyi başarabiliriz. Projeleri olan ve projeye yardım etmek isteyen herkesi bekliyorum.</div>
+<div class="contact">
+            İletişim: <a href="mailto:mehmetfatih041@gmail.com" style="color:#00d8ff;">mehmetfatih041@gmail.com</a>
+        </div>
+    </div>
+</body>
+</html>
