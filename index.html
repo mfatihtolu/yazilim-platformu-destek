@@ -12,17 +12,18 @@
             background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
             color: #fff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
         }
 
         .container {
-            padding: 40px;
+            padding: 5vw;
             z-index: 2;
             position: relative;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 8vw;
             text-align: center;
             margin-bottom: 30px;
             animation: glow 2s ease-in-out infinite alternate;
@@ -30,11 +31,12 @@
 
         .info-section {
             margin-bottom: 20px;
-            padding: 20px;
+            padding: 5vw;
             background: rgba(255, 255, 255, 0.05);
             border-left: 5px solid #00d8ff;
             animation: fadeInUp 1s ease forwards;
             opacity: 0;
+            font-size: 4.5vw;
         }
 
         .info-section:nth-child(2) { animation-delay: 1s; }
@@ -44,7 +46,8 @@
         .contact {
             text-align: center;
             margin-top: 40px;
-            font-size: 18px;
+            font-size: 4vw;
+            word-wrap: break-word;
         }
 
         @keyframes glow {
@@ -67,7 +70,6 @@
             }
         }
 
-        /* Yıldızlar */
         .stars, .stars::before, .stars::after {
             content: '';
             position: absolute;
@@ -83,7 +85,6 @@
             100% {transform: translateY(-1000px);}
         }
 
-        /* Yıldırım efekti */
         .lightning {
             position: fixed;
             top: 0; left: 0;
@@ -109,12 +110,12 @@
     <div class="lightning"></div>
     <div class="container">
         <h1>Yazılım Mühendisliği Destek</h1>
-        
+
         <div class="info-section">1. Bu yolda yalnız değilsin, her seviyeden yazılımcı birlikte gelişebilir.</div>
         <div class="info-section">2. Kod yazarken takıldığında yardım istemekten çekinme, hepimiz bir zamanlar yeniydik.</div>
         <div class="info-section">3. Küçük adımlarla büyük projeler yapılır, yeter ki vazgeçme.</div>
         <div class="info-section">4. Kendini bu alanda geliştiren bütün yazılımcı kardeşlerimi bekliyorum, birlikte olursak her şeyi başarabiliriz. Projeleri olan ve projeye yardım etmek isteyen herkesi bekliyorum.</div>
-<div class="contact">
+        <div class="contact">
             İletişim: <a href="mailto:mehmetfatih041@gmail.com" style="color:#00d8ff;">mehmetfatih041@gmail.com</a>
         </div>
     </div>
