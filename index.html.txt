@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yazılım Mühendisliği Değerlendirme Platformu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 10px;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>İşsiz Yazılım Mühendisleri Platformu</h1>
+    <p>Oluşturan: Mehmet Fatih Tolu</p>
+</header>
+
+<section>
+    <h2>Hakkımızda</h2>
+    <p>Bu platform, iş arayan yazılım mühendislerini değerlendirmek ve işverenlerle buluşturmak amacıyla kurulmuştur.</p>
+</section>
+
+<section>
+    <h2>Yazılım Mühendisliği Nedir?</h2>
+    <p>Yazılım mühendisliği, bilgisayar sistemlerinin ve yazılımların tasarımı, geliştirilmesi ve sürdürülmesini kapsayan bir mühendislik dalıdır. Bu alanda eğitim veren bölümler; algoritma, veri yapıları, programlama, yapay zeka gibi dersleri içerir.</p>
+</section>
+
+<section>
+    <h2>İletişim</h2>
+    <p>Bizimle iletişime geçmek için aşağıdaki e-posta adreslerini kullanabilirsiniz:</p>
+    <ul>
+        <li>mehmetfatih.tolu@example.com</li>
+        <li>destek@yazilimplatformu.com</li>
+        <li>iletisim@yazilimplatformu.com</li>
+    </ul>
+</section>
+
+<footer>
+    <p>&copy; 2025 Mehmet Fatih Tolu. Tüm hakları saklıdır.</p>
+</footer>
+
+</body>
+</html>
