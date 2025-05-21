@@ -1,0 +1,290 @@
+from zipfile import ZipFile
+from pathlib import Path
+
+html_code = """<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yazılım Mühendisliği Destek</title>
+<style>
+  /* Temel renkler ve font */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  :root {
+    --bg: #0a0a14;
+    --card: #1e1e2f;
+    --accent: #00e5ff;
+    --text: #e0e6f0;
+    --muted: #7a8ca0;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--card);
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 30px rgba(0, 229, 255, 0.5);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+  }
+
+  nav a {
+    color: var(--text);
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+  }
+
+  main.container {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 40px;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
+    position: relative;
+    z-index: 10;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .accordion-item {
+    background-color: #2a2a42;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0,229,255,0.2);
+  }
+
+  .accordion-item h4 {
+    margin: 0;
+    padding: 18px 25px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+  }
+
+  .accordion-item h4:hover {
+    background-color: #004a61;
+  }
+
+  .accordion-content {
+    padding: 0 25px 20px 25px;
+    display: none;
+    color: #ccecff;
+    font-size: 1rem;
+  }
+
+  button {
+    background: var(--accent);
+    border: none;
+    color: var(--card);
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  button:hover {
+    background: #00b8d9;
+    box-shadow: 0 0 15px #00b8d9;
+  }
+
+  form input, form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 8px;
+    background: #212140;
+    border: 1px solid #004a61;
+    color: var(--text);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+
+  form input:focus, form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  footer {
+    background: var(--card);
+    text-align: center;
+    padding: 28px 0;
+    margin-top: 60px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    box-shadow: 0 -6px 20px rgba(0, 229, 255, 0.25);
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* Animasyonlu yıldızlar */
+  .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    background: transparent;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out alternate;
+  }
+
+  @keyframes twinkle {
+    from {opacity: 0.2;}
+    to {opacity: 0.8;}
+  }
+
+  /* Şimşek animasyonu */
+  .lightning {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(45deg, #00e5ff 0%, #00e5ff 25%, transparent 40%, transparent 60%, #00e5ff 75%, #00e5ff 100%);
+    filter: drop-shadow(0 0 6px #00e5ff);
+    animation: flash 1.5s infinite;
+    transform-origin: center;
+    opacity: 0;
+    z-index: 5;
+  }
+
+  @keyframes flash {
+    0%, 100% {opacity: 0;}
+    10%, 30% {opacity: 1;}
+    20%, 25%, 35%, 40% {opacity: 0;}
+  }
+
+  /* Animasyon varyasyonu */
+  .lightning:nth-child(1) {
+    left: 20%;
+    animation-delay: 0s;
+    height: 40vh;
+  }
+  .lightning:nth-child(2) {
+    left: 40%;
+    animation-delay: 0.6s;
+    height: 55vh;
+  }
+  .lightning:nth-child(3) {
+    left: 70%;
+    animation-delay: 1.2s;
+    height: 70vh;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    header {
+      flex-direction: column;
+      font-size: 1.4rem;
+      padding: 25px 20px;
+    }
+    nav a {
+      margin-left: 15px;
+      font-size: 1rem;
+    }
+    main.container {
+      margin: 40px 15px;
+      padding: 30px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="lightning"></div>
+  <div class="lightning"></div>
+  <div class="lightning"></div>
+
+  <header>
+    <div>Yazılım Mühendisliği Destek</div>
+    <nav>
+      <a href="#">Anasayfa</a>
+      <a href="#">Hakkımızda</a>
+      <a href="#">Hizmetler</a>
+      <a href="#contact">İletişim</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Yazılım Mühendisliği Destek Portalına Hoş Geldiniz</h1>
+    <p>
+      Yazılım mühendisliği dünyasında karşılaştığınız zorluklar için güçlü ve modern çözümler sunuyoruz. 
+      Amacımız, karmaşık projelerinizi basitleştirerek, kaliteli, sürdürülebilir ve etkili yazılım üretmenize destek olmaktır.
+      Geniş tecrübemizle size yol gösteriyor, en iyi uygulamaları ve güncel teknolojileri sizinle buluşturuyoruz.
+    </p>
+
+    <section class="accordion">
+      <h2>Hakkımızda</h2>
+
+      <div class="accordion-item">
+        <h4 onclick="toggleAccordion(this)">Misyonumuz</h4>
+        <div class="accordion-content">
+          <p>Yazılım mühendisliği süreçlerini kolaylaştırmak ve hızlandırmak için yenilikçi çözümler sunuyoruz. 
+          Müşterilerimize özel, esnek ve kaliteli destek hizmetleri sağlamak önceliğimizdir. Amacımız, yazılım
+          projelerinizin her aşamasında yanınızda olmak ve başarıya ulaşmanızı desteklemektir.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h4 onclick="toggleAccordion(this)">Vizyonumuz</h4>
+        <div class="accordion-content">
+          <p>Yazılım mühendisliği alanında lider ve güvenilir bir kaynak olmak istiyoruz. 
+          Teknolojinin sürekli geliştiği dünyada, en son trendleri takip ederek, kullanıcı dostu ve yenilikçi çözümler üretmek
+          hedefimizdir. Ekibimizle birlikte sektörün standartlarını belirleyen bir marka olmayı amaçlıyoruz.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Etkileşimli Bölüm</h2>
+      <button onclick="showMessage()">Mesajı Göster</button>
+      <p id="message" style="display:none; margin-top:15px; color:#00e5ff; font-weight:600;">
+        Destek ekibimiz her zaman sizin yanınızda! Sor
